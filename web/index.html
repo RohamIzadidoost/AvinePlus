@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Glass Cutting App</title>
+<style>
+body { font-family: Arial, sans-serif; margin:40px; }
+.container { max-width:600px; margin:auto; }
+input, select { display:block; margin-bottom:10px; width:100%; padding:8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Place On Table Glass Order</h1>
+<div>
+    <label>Thickness</label>
+    <input id="thickness" type="number" step="0.1">
+    <label>Color</label>
+    <input id="color" type="text">
+    <label>Round Trim</label>
+    <input id="round" type="checkbox">
+    <label>Pocket</label>
+    <input id="pocket" type="text">
+    <label>Shape</label>
+    <select id="shape">
+        <option value="rectangular">Rectangular</option>
+        <option value="circular">Circular</option>
+        <option value="polygon">Polygon</option>
+    </select>
+    <label>Width</label><input id="width" type="number" step="0.1">
+    <label>Height</label><input id="height" type="number" step="0.1">
+    <label>Diameter</label><input id="diameter" type="number" step="0.1">
+    <label>Description</label><input id="desc" type="text">
+    <button onclick="submitOrder()">Submit</button>
+</div>
+</div>
+<script>
+async function submitOrder(){
+    const body = {
+        thickness: parseFloat(document.getElementById('thickness').value),
+        color: document.getElementById('color').value,
+        round_trim: document.getElementById('round').checked,
+        pocket: document.getElementById('pocket').value,
+        shape_type: document.getElementById('shape').value,
+        width: parseFloat(document.getElementById('width').value),
+        height: parseFloat(document.getElementById('height').value),
+        diameter: parseFloat(document.getElementById('diameter').value),
+        description: document.getElementById('desc').value
+    };
+    const res = await fetch('/orders', {method:'POST', headers:{'Content-Type':'application/json','X-User-ID':'1','X-User-Role':'customer'}, body: JSON.stringify(body)});
+    const data = await res.json();
+    alert(JSON.stringify(data));
+}
+</script>
+</body>
+</html>
