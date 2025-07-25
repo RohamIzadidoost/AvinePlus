@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <form id="loginForm" class="bg-white p-6 rounded shadow-md w-full max-w-sm">
+        <h1 class="text-xl font-bold mb-4 text-center">ورود</h1>
+        <input id="email" type="email" placeholder="ایمیل" class="border p-2 w-full mb-3" required>
+        <input id="password" type="password" placeholder="رمز عبور" class="border p-2 w-full mb-3" required>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white w-full py-2 rounded" type="submit">ورود</button>
+    </form>
+    <script src="config.js"></script>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const res = await fetch(window.API_BASE_URL + '/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+            localStorage.setItem('userID', data.id);
+            localStorage.setItem('role', data.role);
+            alert('ورود موفقیت آمیز بود');
+            window.location.href = 'index.html';
+        } else {
+            alert(data.error || 'خطا در ورود');
+        }
+    });
+    </script>
+</body>
+</html>
