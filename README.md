@@ -22,4 +22,5 @@ The server will start on `:8080`.
 
 ## Frontend
 
-Open `frontend/public/index.html` in your browser or visit `http://localhost:8080` after running the backend.
+Set the API base URL in `frontend/public/config.js` if the backend runs on a different host.
+Open `frontend/public/index.html` in your browser. From the navigation you can access login, register and order pages.

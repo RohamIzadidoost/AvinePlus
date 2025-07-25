@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل ادمین</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4 bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">سفارش‌ها</h1>
+    <table class="w-full text-right border" id="ordersTbl">
+        <thead>
+            <tr>
+                <th class="border px-2">شناسه</th>
+                <th class="border px-2">وضعیت</th>
+                <th class="border px-2">کاربر</th>
+                <th class="border px-2">اقدامات</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="config.js"></script>
+    <script>
+    async function loadOrders() {
+        const res = await fetch(window.API_BASE_URL + '/admin/orders', {
+            headers: {
+                'X-User-ID': localStorage.getItem('userID') || '',
+                'X-User-Role': localStorage.getItem('role') || ''
+            }
+        });
+        const data = await res.json();
+        const tbody = document.querySelector('#ordersTbl tbody');
+        tbody.innerHTML = '';
+        data.forEach(o => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td class="border px-2">${o.ID}</td>`+
+                `<td class="border px-2">${o.Status}</td>`+
+                `<td class="border px-2">${o.UserID}</td>`+
+                `<td class="border px-2 space-x-reverse space-x-2">
+                    <button onclick="verify(${o.ID})" class='bg-blue-500 text-white px-2 rounded'>تایید</button>
+                    <button onclick="assign(${o.ID})" class='bg-green-500 text-white px-2 rounded'>انتساب</button>
+                </td>`;
+            tbody.appendChild(tr);
+        });
+    }
+    async function verify(id) {
+        await fetch(window.API_BASE_URL + `/admin/orders/${id}/verify`, {
+            method:'POST',
+            headers:{
+                'X-User-ID': localStorage.getItem('userID') || '',
+                'X-User-Role': localStorage.getItem('role') || ''
+            }
+        });
+        loadOrders();
+    }
+    async function assign(id) {
+        const emp = prompt('شناسه کارمند؟');
+        if(!emp) return;
+        await fetch(window.API_BASE_URL + `/admin/orders/${id}/assign`, {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-User-ID': localStorage.getItem('userID') || '',
+                'X-User-Role': localStorage.getItem('role') || ''
+            },
+            body: JSON.stringify({ employee_id: parseInt(emp) })
+        });
+        loadOrders();
+    }
+    loadOrders();
+    </script>
+</body>
+</html>
