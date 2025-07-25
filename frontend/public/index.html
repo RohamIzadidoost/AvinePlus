@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات برش شیشه</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f2f5;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: #2193b0;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #1a7a91;
+        }
+        .footer {
+            background-color: #334155;
+            color: white;
+            padding: 2rem 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">گلس‌پرو</a>
+            <div class="space-x-6 space-x-reverse">
+                <a href="services.html" class="text-gray-600 hover:text-blue-600 transition duration-300">خدمات</a>
+                <a href="products.html" class="text-gray-600 hover:text-blue-600 transition duration-300">محصولات</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600 transition duration-300">درباره ما</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition duration-300">تماس با ما</a>
+                <a href="followup.html" class="text-gray-600 hover:text-blue-600 transition duration-300">پیگیری سفارش</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-extrabold mb-4 leading-tight">راهکارهای دقیق برش شیشه</h1>
+            <p class="text-xl mb-8 opacity-90">همراه مطمئن شما در ساخت شیشه‌های سفارشی</p>
+            <a href="services.html" class="btn-primary inline-block font-semibold shadow-lg">مشاهده خدمات</a>
+        </div>
+    </section>
+
+    <!-- Main Content - Services & Products Overview -->
+    <main class="flex-grow container mx-auto py-12 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Services Card -->
+            <div class="card p-8 flex flex-col items-center text-center">
+                <svg class="w-16 h-16 text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.942 3.331.83 2.805 2.393a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.942 1.543-.83 3.331-2.393 2.805a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.942-3.331-.83-2.805-2.393a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.942-1.543.83-3.331 2.393-2.805a1.724 1.724 0 002.573-1.066z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">خدمات ما</h2>
+                <p class="text-gray-600 mb-6">با مجموعه‌ای گسترده از خدمات برش شیشه متناسب با نیازهای شما آشنا شوید.</p>
+                <a href="services.html" class="btn-primary">مشاهده خدمات</a>
+            </div>
+
+            <!-- Products Card -->
+            <div class="card p-8 flex flex-col items-center text-center">
+                <svg class="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m7 0V5a2 2 0 012-2h2a2 2 0 012 2v6m-6 0H6"></path></svg>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">محصولات ما</h2>
+                <p class="text-gray-600 mb-6">محصولات برش‌خورده و آماده نصب ما را مشاهده کنید.</p>
+                <a href="products.html" class="btn-primary">مشاهده محصولات</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <p>&copy; ۲۰۲۵ گلس‌پرو. کلیه حقوق محفوظ است.</p>
+            <div class="mt-4 space-x-4 space-x-reverse">
+                <a href="about.html" class="text-gray-300 hover:text-white transition duration-300">درباره ما</a>
+                <a href="contact.html" class="text-gray-300 hover:text-white transition duration-300">تماس</a>
+                <a href="privacy.html" class="text-gray-300 hover:text-white transition duration-300">حریم خصوصی</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
