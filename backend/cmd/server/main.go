@@ -13,6 +13,11 @@ import (
 func main() {
 	// init DB
 	dbConn := db.Init()
+	if dbConn == nil {
+		panic("failed to connect to database")
+	} else {
+		println("connected to database")
+	}
 
 	// repositories
 	userRepo := gormrepo.NewUserRepository(dbConn)
@@ -28,9 +33,8 @@ func main() {
 	statusH := api.NewStatusHandler(orderSvc)
 
 	r := gin.Default()
-	// serve simple web UI
-	r.Static("/", "web")
 
+	// API routes
 	r.POST("/register", userH.Register)
 	r.POST("/login", userH.Login)
 
@@ -53,6 +57,11 @@ func main() {
 	user := auth.Group("/user")
 	user.Use(middleware.RequireRole("customer"))
 	user.POST("/orders/:id/approve", statusH.UserApprove)
+
+	// **Serve static files last!**
+	r.Static("/web", "web")
+	// Optionally, serve index.html at root:
+	// r.StaticFile("/", "web/index.html")
 
 	r.Run(":8080")
 }

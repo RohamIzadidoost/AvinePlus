@@ -2,9 +2,10 @@ package db
 
 import (
 	"glasscutting/internal/domain/model"
+	"os"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"os"
 )
 
 func Init() *gorm.DB {
@@ -15,6 +16,8 @@ func Init() *gorm.DB {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
+	} else {
+		println("semi on grrr")
 	}
 	db.AutoMigrate(&model.User{}, &model.Order{}, &model.Service{})
 	return db
